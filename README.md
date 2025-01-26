@@ -1,145 +1,117 @@
-Cricket Score Predictor
+# Cricket Team Final Score Prediction Model
 
-This machine learning model predicts the final score of a cricket team based on real-time match statistics. It utilizes a Random Forest classifier, which demonstrated the best performance after evaluating various machine learning algorithms.
+## Model Overview
 
-Features and Usage
+This machine learning model predicts the **final score of a cricket team** based on real-time match statistics. The model was developed using **historical cricket match data**, and the **Random Forest classifier** demonstrated the best performance after evaluating various machine learning algorithms.
 
-Features
+---
 
-Input: Real-time match statistics, such as runs, wickets, overs played, and other relevant features.
+## Features and Usage
 
-Output: Predicted final score of the cricket team (integer).
+### **Usage**
+To use the model, the user provides match details such as:
+- Runs
+- Wickets
+- Overs played
+- Other relevant features
 
-Performance: Quick inference time (<1 second), enabling real-time predictions.
+The model outputs the **predicted final score** for the team. A **Flask-based web application** enables real-time predictions during live matches.
 
-Usage
+### **Input and Output**
+- **Input Shape**: A list of features representing the current state of the match (e.g., runs, wickets, overs).
+- **Output**: Predicted final score (integer).
 
-The user provides current match details, and the model outputs a predicted final score. A Flask-based web application facilitates real-time interaction during live matches.
+---
 
-System Overview
+## System Architecture
 
-Input Requirements
+### **System Description**
+This model is part of a larger web-based system designed for real-time score prediction:
+1. The user inputs current match data.
+2. The model generates the predicted final score.
+3. Outputs are displayed in the Flask web app, providing insights during ongoing cricket matches.
 
-Match-related statistics, including:
+### **Input Requirements**
+- Match-related statistics: Runs, wickets, overs, and additional game-specific features.
+- User interface: Flask web app for real-time interaction.
 
-Runs scored
+### **Downstream Dependencies**
+The model operates independently but can be integrated with:
+- Match prediction tools.
+- Team performance analytics.
 
-Wickets lost
+---
 
-Overs played
+## Implementation Details
 
-Additional game-specific features
+### **Hardware Requirements**
+- **Training**: Standard CPU (no GPUs used during training).
+- **Inference**: Suitable for real-time use on any mid-tier system.
 
-Output
+### **Software Requirements**
+- **Python**
+- **Scikit-learn**: For the Random Forest implementation.
+- **Flask**: For creating the web application.
+- **Pickle**: For model serialization.
 
-Predicted final score of the batting team.
+### **Compute Requirements**
+- Training Time: ~30 minutes on a mid-tier CPU.
+- Inference Time: <1 second per prediction.
 
-Real-Time System
+### **Energy Consumption**
+- Minimal energy consumption during training and inference.
 
-The model is integrated into a Flask web application to:
+---
 
-Accept live match data as input
+## Model Characteristics
 
-Provide instant score predictions
+### **Model Initialization**
+- Trained from scratch using historical cricket match data.
+- No pre-trained models were used.
 
-Display insights and projections during matches
+### **Model Stats**
+- **Model Type**: Random Forest
+- **Number of Trees**: 100
+- **Features Used**: 15
+- **Latency**: <1 second for inference
 
-Model Overview
+### **Other Details**
+- **Pruning/Quantization**: Not applied.
+- **Privacy Considerations**: No personal or sensitive data used.
 
-Model Characteristics
+---
 
-Algorithm: Random Forest Classifier
+## Data Overview
 
-Hyperparameters: Contains 100 decision trees with approximately 15 features.
+### **Training Data**
+- Historical cricket match data containing statistics such as:
+  - Runs
+  - Wickets
+  - Overs played
+  - Other match-specific variables
+- Data Source: Publicly available cricket databases.
 
-Training: Built from scratch using historical cricket match data.
+#### **Preprocessing Steps**
+1. **Data Cleaning**: Removal of missing values and outliers.
+2. **Feature Engineering**: Aggregate match stats such as run rate and average wickets per over.
 
-Size: Lightweight model suitable for real-time deployment.
+### **Evaluation Data**
+- **Data Split**: 80% training, 10% validation, 10% test.
+- **Distribution**: Similar distributions between training and test data.
 
-Implementation Details
-
-Hardware: Trained on a standard CPU without GPUs.
-
-Software:
-
-Python
-
-Scikit-learn
-
-Flask (web application)
-
-Pickle (model serialization)
-
-Compute Requirements:
-
-Training: Approximately 30 minutes on a mid-tier CPU.
-
-Inference: Under 1 second per prediction.
-
-Energy Consumption: Minimal due to computational efficiency.
-
-Data Overview
-
-Training Data
-
-Source: Publicly available cricket databases with historical match data.
-
-Preprocessing:
-
-Removal of missing values and outliers.
-
-Feature engineering (e.g., run rate, average wickets per over).
-
-Split: 80% training, 10% validation, 10% test.
-
-Evaluation
-
-Metrics:
-
-Mean Squared Error (MSE)
-
-R-squared
-
-Performance:
-
-Outperformed other models like Linear Regression and Decision Trees.
-
-High accuracy in final score prediction.
-
-Known Limitations
-
-Data Dependence: Performance may degrade in scenarios with significant deviations from historical data (e.g., extreme weather, unexpected player injuries).
-
-Lack of Subgroup Analysis: No team- or player-specific evaluations were performed. Future iterations may incorporate these aspects.
-
-Sensitive Use Cases: Designed for entertainment and analysis, not critical decision-making.
-
-Ethical Considerations
-
-Data Privacy: Uses publicly available match data with no sensitive or personal information.
-
-Bias: Continuous monitoring will ensure the model does not unintentionally propagate biases if expanded in the future.
-
-Installation and Usage
-
-Clone the repository:
-
-git clone https://github.com/your-username/cricket-score-predictor.git
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-Run the Flask web app:
-
-python app.py
-
-Access the application at http://localhost:5000 and input match statistics for predictions.
-
-Future Work
-
-Player-Level Analysis: Incorporate player-specific data for more granular predictions.
-
-Weather and Conditions: Adapt the model to account for real-time match conditions, such as weather.
-
-Fairness Analysis: Evaluate fairness if demographic or player-level data is added.
+---
+
+## Evaluation Results
+
+### **Summary**
+- The Random Forest model achieved high accuracy in predicting final scores.
+- Metrics used:
+  - **Mean Squared Error (MSE)**
+  - **R-squared (R²)**
+- Outperformed other models such as Linear Regression and Decision Trees.
+
+### **Subgroup Evaluation**
+- No subgroup analysis performed.
+- Future versions could explore:
+  - Team-specific performance patterns.
+  - Impact of weather conditions on scores.
